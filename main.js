@@ -4,13 +4,43 @@ var empCountry = document.querySelector("#country");
 var empState = document.querySelector("#state");
 var submitBtn = document.querySelector("#save");
 
-
-
-// var userA = new Date(userAge);
-
-// function setStates(){
+// const allCountry = [];
+// function insert(empCountry){
 
 // }
+
+var allCountry = new Array();
+
+function insert(empCountry) {
+    allCountry[allCountry.length] = empCountry;
+}
+
+function count() {
+
+    allCountry.sort();
+
+    var current = null;
+    var cnt = 0;
+    for (var i = 0; i < allCountry.length; i++) {
+        if (allCountry[i] != current) {
+            if (cnt > 0) {
+                document.write(current + ' ' + cnt);
+            }
+            current = allCountry[i];
+            cnt = 1;
+        } else {
+            cnt++;
+        }
+    }
+    if (cnt > 0) {
+        document.write(current + ' ' + cnt);
+    }
+
+}
+
+var distCoun = count();
+
+
 
 
 function clickEventHandler() {
@@ -27,19 +57,16 @@ function clickEventHandler() {
     age.innerHTML = userAge;
     country.innerHTML = empCountry.value;
     state.innerHTML = empState.value;
+
+    var tableUser2 = document.querySelector("#table2");
+    var row = tableUser2.insertRow(-1);
+    var countryDistinct = row.insertCell(0);
+    var countOf = row.insertCell(1);
+    countryDistinct.innerHTML = count();
+    countOf.innerHTML = count();
 }
 
 
-
-// function empCount(){
-//     var tableUser2 = document.querySelector("#table2");
-//     var row = tableUser2.insertRow(0);
-
-
-//     countE.innerHTML = empCountry.count();
-//     var countE = row.insertCell(1);
-
-// }
 
 // function clearAll() {
 //     empName.value = ""
@@ -50,4 +77,3 @@ function clickEventHandler() {
 
 submitBtn.addEventListener("click", clickEventHandler);
 submitBtn.addEventListener("click", clearAll);
-submitBtn.addEventListener("click", empCount);
