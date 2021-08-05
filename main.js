@@ -11,30 +11,54 @@ function insert(empCountry) {
     allCountry[allCountry.length] = empCountry;
 }
 
-function count() {
+// function count() {
 
+//     allCountry.sort();
+
+//     var current = null;
+//     var cnt = 0;
+//     for (var i = 0; i < allCountry.length; i++) {
+//         if (allCountry[i] != current) {
+//             if (cnt > 0) {
+//                 document.write(current + ' ' + cnt);
+//             }
+//             current = allCountry[i];
+//             cnt = 1;
+//         } else {
+//             cnt++;
+//         }
+//     }
+//     if (cnt > 0) {
+//         document.write(current + ' ' + cnt);
+//     }
+
+// }
+
+// count();
+
+
+function foo (array) {
+    let a = [],
+      b = [],
+      allCountry = [...array], // clone array so we don't change the original when using .sort()
+      prev;
+  
     allCountry.sort();
-
-    var current = null;
-    var cnt = 0;
-    for (var i = 0; i < allCountry.length; i++) {
-        if (allCountry[i] != current) {
-            if (cnt > 0) {
-                document.write(current + ' ' + cnt);
-            }
-            current = allCountry[i];
-            cnt = 1;
-        } else {
-            cnt++;
-        }
+    for (let element of allCountry) {
+      if (element !== prev) {
+        a.push(element);
+        b.push(1);
+      }
+      else ++b[b.length - 1];
+      prev = element;
     }
-    if (cnt > 0) {
-        document.write(current + ' ' + cnt);
-    }
-
-}
-
-count();
+  
+    return [a, b];
+  }
+  
+  const result = foo(allCountry);
+  var res1= '[' + result[0] + ']';
+  var res2 = '[' + result[1] + ']';
 
 
 
@@ -58,8 +82,8 @@ function clickEventHandler() {
     var row = tableUser2.insertRow(-1);
     var countryDistinct = row.insertCell(0);
     var countOf = row.insertCell(1);
-    countryDistinct.innerHTML = empCountry.value;
-    countOf.innerHTML = count();
+    countryDistinct.innerHTML = res1;
+    countOf.innerHTML = res2;
 }
 
 
