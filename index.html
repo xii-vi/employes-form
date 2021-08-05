@@ -27,8 +27,7 @@
             <a class="nav-link" href="contact.html">Contact Us</a>
         </li>
     </ul>
-    <form method="POST">
-
+<form method="POST" data-netlify="true">
     <div class="mx-auto" style="width: 700px;">
 
         <div class="row">
@@ -38,35 +37,34 @@
             </div>
             <div class="col">
                 <label for="empAge" class="form-label">Year Of Birth</label>
-                <input type="number" class="form-control" id="empage" placeholder="YYYY" required>
+                <input type="number" class="form-control" id="empage" placeholder="YYYY">
             </div>
         </div>
 
         <br>
 
         <div class="row">
-            <script src="countries.js" type="text/javascript"></script>
-            <div class="dropdown col">
-                <div>
-                    <label for="Country" class="form-label">Country</label>
+                <script src="countries.js" type="text/javascript"></script>
+                <div class="dropdown col">
+                    <div>
+                        <label for="Country" class="form-label">Country</label>
+                    </div>
+                    <select class="btn dropdown-toggle" type="button" id="country"
+                        data-bs-toggle="dropdown" aria-expanded="false" required>
+                    </select>
                 </div>
-                <select class="btn dropdown-toggle" type="button" id="country" data-bs-toggle="dropdown"
-                    aria-expanded="false" required>
-                </select>
-            </div>
 
-            <div class="dropdown col">
-                <div>
-                    <label for="State" class="form-label">State</label>
+                <div class="dropdown col">
+                    <div>
+                        <label for="State" class="form-label">State</label>
+                    </div>
+                    <select class="btn dropdown-toggle" type="button" id="state" data-bs-toggle="dropdown"
+                        aria-expanded="false" required>
+                    </select>
                 </div>
-                <select class="btn dropdown-toggle" type="button" id="state" data-bs-toggle="dropdown"
-                    aria-expanded="false" required>
-                </select>
-            </div>
 
 
         </div>
-    </form>
         <br>
 
         <div style="text-align: center; margin-top: 1rem;">
@@ -87,7 +85,6 @@
             </thead>
         </table>
 
-
         <table class="table table-bordered caption-top align-middle" id="table2">
             <caption>Employees Count By Country</caption>
             <thead>
@@ -98,6 +95,7 @@
             </thead>
         </table>
     </div>
+</form>
 
     <script src="main.js" type="text/javascript"></script>
     <script language="javascript">

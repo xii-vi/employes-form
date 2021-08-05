@@ -4,10 +4,6 @@ var empCountry = document.querySelector("#country");
 var empState = document.querySelector("#state");
 var submitBtn = document.querySelector("#save");
 
-// const allCountry = [];
-// function insert(empCountry){
-
-// }
 
 var allCountry = new Array();
 
@@ -38,7 +34,7 @@ function count() {
 
 }
 
-var distCoun = count();
+count();
 
 
 
@@ -62,7 +58,7 @@ function clickEventHandler() {
     var row = tableUser2.insertRow(-1);
     var countryDistinct = row.insertCell(0);
     var countOf = row.insertCell(1);
-    countryDistinct.innerHTML = count();
+    countryDistinct.innerHTML = empCountry.value;
     countOf.innerHTML = count();
 }
 
