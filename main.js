@@ -4,11 +4,10 @@ var empCountry = document.querySelector("#country");
 var empState = document.querySelector("#state");
 var submitBtn = document.querySelector("#save");
 
-
 var allCountry = new Array();
 
 function insert(empCountry) {
-    allCountry[allCountry.length] = empCountry;
+  allCountry[allCountry.length] = empCountry;
 }
 
 // function count() {
@@ -37,53 +36,70 @@ function insert(empCountry) {
 // count();
 
 
-function foo (array) {
-    let a = [],
-      b = [],
-      allCountry = [...array], // clone array so we don't change the original when using .sort()
-      prev;
-  
-    allCountry.sort();
-    for (let element of allCountry) {
-      if (element !== prev) {
-        a.push(element);
-        b.push(1);
-      }
-      else ++b[b.length - 1];
-      prev = element;
-    }
-  
-    return [a, b];
+function foo(array) {
+  let a = [],
+    b = [],
+    allCountry = [...array], // clone array so we don't change the original when using .sort()
+    prev;
+
+  allCountry.sort();
+  for (let element of allCountry) {
+    if (element !== prev) {
+      a.push(element);
+      b.push(1);
+    } else ++b[b.length - 1];
+    prev = element;
   }
+
+  return [a, b];
+}
+
+const result = foo(allCountry);
+var res1 = '[' + result[0] + ']';
+var res2 = '[' + result[1] + ']';
+
+
+// function checkField() {
+//   var x = document.querySelector("#empname");
+//   if (x = "") {
+//     alert("Please Enter Your Name");
+//     return false;
+//   } else {
+//     return true;
+//   }
+// }
+
+// if (empCountry.value == -1)
+// {
+//   return false;
+// }
+// else{
   
-  const result = foo(allCountry);
-  var res1= '[' + result[0] + ']';
-  var res2 = '[' + result[1] + ']';
-
-
+//   return empCountry.value;
+// }
 
 
 function clickEventHandler() {
-    var newDate = new Date();
-    var year = newDate.getUTCFullYear();
-    var userAge = Math.abs(year - empAge.value);
-    var tableUser = document.querySelector("#table1");
-    var row = tableUser.insertRow(-1);
-    var name = row.insertCell(0);
-    var age = row.insertCell(1);
-    var country = row.insertCell(2);
-    var state = row.insertCell(3);
-    name.innerHTML = empName.value;
-    age.innerHTML = userAge;
-    country.innerHTML = empCountry.value;
-    state.innerHTML = empState.value;
+  var newDate = new Date();
+  var year = newDate.getUTCFullYear();
+  var userAge = Math.abs(year - empAge.value);
+  var tableUser = document.querySelector("#table1");
+  var row = tableUser.insertRow(-1);
+  var name = row.insertCell(0);
+  var age = row.insertCell(1);
+  var country = row.insertCell(2);
+  var state = row.insertCell(3);
+  name.innerHTML = empName.value;
+  // age.innerHTML = userAge;
+  country.innerHTML = empCountry.value;
+  state.innerHTML = empState.value;
 
-    var tableUser2 = document.querySelector("#table2");
-    var row = tableUser2.insertRow(-1);
-    var countryDistinct = row.insertCell(0);
-    var countOf = row.insertCell(1);
-    countryDistinct.innerHTML = res1;
-    countOf.innerHTML = res2;
+  // var tableUser2 = document.querySelector("#table2");
+  // var row = tableUser2.insertRow(-1);
+  // var countryDistinct = row.insertCell(0);
+  // var countOf = row.insertCell(1);
+  // countryDistinct.innerHTML = res1;
+  // countOf.innerHTML = res2;
 }
 
 
