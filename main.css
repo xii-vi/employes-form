@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap');
+
+body{
+    font-family: 'Ubuntu', sans-serif;
+    background-color: #BFDBFE;
+}
+
+.container{
+    padding: auto;
+    background-color: #EFF6FF;
+    box-sizing: border-box;
+    display: block;
+}
+
+.heading{
+    background-color: #2563EB;
+    color: white;
+    padding: 2rem;
+}

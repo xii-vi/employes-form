@@ -3,6 +3,10 @@ var empAge = document.querySelector("#empage");
 var empCountry = document.querySelector("#country");
 var empState = document.querySelector("#state");
 
+var country = [];
+var uniqueCountry = [];
+var rowno = 0;
+
 
 function success() {
   if ((document.getElementById("empname").value == "") || (document.getElementById("empage").value == "") || (document.getElementById("country").value == "")) {
@@ -29,54 +33,74 @@ function clickEventHandler() {
   age.innerHTML = userAge;
   country.innerHTML = empCountry.value;
   state.innerHTML = empState.value;
-
-  // countryCount();
 }
 
 function countryCount() {
-  var country = [];
-  var uniqueCountry = [];
   var flag = 0;
+  var k = -1;
   //create a new table with id table3 in your index.html
   var tds = document.getElementById('table1').querySelectorAll("tr td:nth-child(3)");
-  //for (var i=0; i < tds.length; ++i) {
-  var employee = tds[tds.length - 1].textContent
   var newcountry = tds[tds.length - 1].textContent;
-  if (country.indexOf(employee) != -1) {
-    // //means you have the country. 
-    // //Find the country from the new table and take the count of the country and increment that.
-    // TO GET THE COUNTRIES---->
-    var tds = document.getElementById('table1').querySelectorAll("tr td:first-child");
+  for (var l = 0; l < country.length; l++) {
+    if (country[l] == newcountry) {
+      flag = 1;
+      break;
+    }
+  }
+  if (flag == 0) {
+    country[country.length] = tds[tds.length - 1].textContent;
+    //means you don't have the country.
+    //just add the country and count in your table3
+    var tableUser = document.querySelector("#table2");
+    var row = tableUser.insertRow(-1);
+    var countryname = row.insertCell(0);
+    var countrynum = row.insertCell(1);
+
+    countryname.innerHTML = newcountry;
+    countrynum.innerHTML = "1";
+  } else {
+    //means you have the country. 
+    //Find the country from the new table and take the count of the country and increment that.
+    //TO GET THE COUNTRIES---->
+    var tds2 = document.getElementById('table2').querySelectorAll("tr td:first-child");
     //GET THE ROWS POSITION WHERE IT IS using 
-    var k = -1;
-    for (var i = 0; i < tds.length; ++i) {
-      if ((tds[i].textContent).localeCompare(newcountry) == 0) {
+    var k = 0;
+    for (var i = 0; i <= tds2.length; i++) {
+      if (tds2[i].textContent == newcountry) {
         k = i;
-        break
+        //alert("k: "+k);
+        break;
       }
     }
     if (k != -1) {
       //That means you have the data
       //TO GET THE COUNT----->
-      var tds1 = document.getElementById('table1').querySelectorAll("tr td:nth-child(2)");
-      var countryCoun = parseInt(tds1[k]) + 1;
+      var tds1 = document.getElementById('table2').querySelectorAll("tr td:last-child");
+      //alert(tds1[0]);
+      var countofcountry = parseInt(tds1[k].textContent) + 1;
+      //alert(typeof countofcountry);
     }
+    var table = document.getElementById('table2');
+    // Delete respective row
+    //alert("k:"+ (parseInt(k)));
+    table.deleteRow(parseInt(k));
+    if (country.length == 1) {
+      rowno = rowno + 1;
+    }
+    if (rowno == 1)
+      table.deleteRow(parseInt(0));
     //now remove the previous count and write the new count
-    //
-  } else {
-    //means you don't have the country.
-    //just add the country and count in your table3
-    //}
-    country.push(tds[i].textContent);
+    var tableUser = document.querySelector("#table2");
+    var row = table.insertRow(-1);
+    var countryname = row.insertCell(0);
+    var countrynum = row.insertCell(1);
+    countryname.innerHTML = newcountry;
+    countrynum.innerHTML = countofcountry;
   }
-  alert(country);
-
-  var tableUser2 = document.querySelector("#table3");
-  var row = tableUser2.insertRow(-1);
-  var countryDistinct = row.insertCell(0);
-  var countOf = row.insertCell(1);
-  countryDistinct.innerHTML = empCountry.value;
-  countOf.innerHTML = countryCoun;
+  //
+  //country.push(tds[tds.length-1].textContent);
+  //alert(country);
+  success();
 }
 
 function addDatatoJson() {
@@ -106,4 +130,4 @@ function clearAll() {
 
 submitBtn.addEventListener("click", clickEventHandler);
 submitBtn.addEventListener("click", clearAll);
-submitBtn.addEventListener("click", countryCount );
+submitBtn.addEventListener("click", countryCount);
